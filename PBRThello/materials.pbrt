@@ -1,0 +1,18 @@
+# materials file
+
+# snow
+MakeNamedMedium "snow_fwd" 
+   "string type" "homogeneous"
+   "color sigma_s" [ .05, .05, 0.05 ]
+   "color sigma_a" [ .03, .03, 0.03 ]
+#   "color sigma_s" [ .001243, .001312, 0.001381 ]
+#   "color sigma_a" [ .0001381, .00006906, 0.000 ]
+#   "color sigma_s" [ 700, .710, 724 ]
+#   "color sigma_a" [ .0001381, .00006906, 0.000 ]
+   "float g" 0.5
+
+MakeNamedMedium "snow_back" 
+   "string type" "homogeneous"
+   "color sigma_s" [ .001243, .001312, 0.001381 ]
+   "color sigma_a" [ .0001381, .00006906, 0.000 ]
+   "float g" -.5

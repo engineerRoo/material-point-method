@@ -1,0 +1,77 @@
+Integrator "volpath" "integer maxdepth" [50]
+
+#Sampler "02sequence" "integer pixelsamples" [32]
+Sampler "sobol" "integer pixelsamples" 8192
+
+PixelFilter "gaussian"
+
+Film "image" "integer yresolution" [900] "integer xresolution" [900]
+  "float cropwindow" [0 1 0 1]
+  "string filename" "step31.exr"
+  "float scale" 7
+
+Scale -1 1 1
+LookAt 0 0 5 0 0 0 1 0 0
+Camera "perspective" "float fov" [40]
+
+WorldBegin
+
+
+#AttributeBegin
+#    LightSource "infinite" "string mapname" ["textures/skylight-morn.exr"]
+#        "color scale" [3 3 3]
+#AttributeEnd
+
+AttributeBegin
+LightSource "infinite" "string mapname" "textures/sky.exr"
+    "rgb L" [80 80 120]
+LightSource "distant"  "point from" [ -100 40  100 ]
+        "blackbody L" [1500 5]        
+AttributeEnd
+
+
+
+
+
+
+
+
+AttributeBegin
+CoordSysTransform "camera"
+Material "substrate" "rgb Kd" [.05 .05 .05]
+    "rgb Ks" [ .1 .1 .1 ]
+    "float uroughness" .01
+    "float vroughness" .01
+Translate 0 0 30
+Shape "disk" "float radius" 30
+AttributeEnd
+
+# ground plane
+AttributeBegin
+Material "substrate" "rgb Kd" [.05 .05 .05]
+    "rgb Ks" [ .05 .05 .05 ]
+    "float uroughness" .01
+    "float vroughness" .01
+Translate 0 1.05 0
+Shape "trianglemesh" "point P" [ -50 0 -50   50 0 -50   50 0 50   -50 0 50 ]
+    "integer indices" [0 1 2 0 2 3]
+AttributeEnd
+
+
+TransformBegin
+	Include "geometry/step31.pbrt"
+	  "color sigma_a" [72.4 36.2 0.] "color sigma_s" [651.6 687.8 724.0]
+      "float g" 0.5
+TransformEnd
+
+AttributeBegin
+	Translate -1 -1 -.5
+	Scale 1 1 2.5
+    Material ""
+    MediumInterface "smoke" ""
+	Shape "plymesh" "string filename" "geometry/density_render.ply"
+AttributeEnd
+
+
+
+WorldEnd

@@ -1,0 +1,6 @@
+This folder contains all the programs used for the snow dynamics, as Jupyter notebooks. In addition, the pbrt file used to create the last pbrt figure in the report is provided, but the data is transferred by using the code in the "brt.ipynb" notebook. 
+
+To obtain the gifs, some scripting was done, but this won't be provided since it was performed by using some spaghetti scripting. Still, the PBRT files should be enough to perform a run with the PBRT program.
+
+To run the program, it should be enough to use the command:
+	Pbrt $(LOCATION OF THE PBRThello FILE)
